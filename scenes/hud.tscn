@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://srqmmvy3cvp7"]
+
+[ext_resource type="FontFile" uid="uid://du0umfo5dwy3j" path="res://assets/fonts/Tigelo.ttf" id="1_ahhtf"]
+
+[node name="HUD" type="CanvasLayer"]
+
+[node name="Wood Label" type="Label" parent="."]
+offset_left = 939.0
+offset_top = 16.0
+offset_right = 1073.0
+offset_bottom = 70.0
+theme_override_colors/font_color = Color(0.384314, 0.305882, 0.0823529, 1)
+theme_override_fonts/font = ExtResource("1_ahhtf")
+theme_override_font_sizes/font_size = 60
+text = "Wood: 0"
