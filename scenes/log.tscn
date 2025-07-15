@@ -3,10 +3,13 @@
 [ext_resource type="Script" uid="uid://b1fbcsdhrs7fm" path="res://scripts/log.gd" id="1_pt1ea"]
 [ext_resource type="Texture2D" uid="uid://b01iibss7mn5r" path="res://assets/images/log.png" id="2_k0uux"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_vx63x"]
-size = Vector2(113.204, 147.221)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pt1ea"]
+size = Vector2(37.3333, 130.667)
 
 [node name="Log" type="Area2D"]
+scale = Vector2(0.75, 0.75)
+collision_layer = 16
+collision_mask = 20
 script = ExtResource("1_pt1ea")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -15,8 +18,10 @@ scale = Vector2(0.564, 0.564)
 texture = ExtResource("2_k0uux")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(17.398, 15.3897)
-shape = SubResource("RectangleShape2D_vx63x")
+position = Vector2(1.33333, 17.3333)
+shape = SubResource("RectangleShape2D_pt1ea")
 
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
