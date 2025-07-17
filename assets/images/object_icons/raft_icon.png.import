@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b01iibss7mn5r"
-path="res://.godot/imported/log.png-43d8fba17fa06ec2efee261e9cc7cd7c.ctex"
+uid="uid://wfg6xsl8556p"
+path="res://.godot/imported/raft_icon.png-24f96af1b50614e2e13db7755d69b159.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/log.png"
-dest_files=["res://.godot/imported/log.png-43d8fba17fa06ec2efee261e9cc7cd7c.ctex"]
+source_file="res://assets/images/object_icons/raft_icon.png"
+dest_files=["res://.godot/imported/raft_icon.png-24f96af1b50614e2e13db7755d69b159.ctex"]
 
 [params]
 

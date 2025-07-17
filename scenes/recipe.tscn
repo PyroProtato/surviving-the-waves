@@ -1,0 +1,45 @@
+[gd_scene load_steps=4 format=3 uid="uid://v1id2jn70g42"]
+
+[ext_resource type="Script" uid="uid://vo6gbg3wpbhn" path="res://scripts/recipe.gd" id="1_d4eax"]
+[ext_resource type="Theme" uid="uid://cs25uxf8x287n" path="res://themes/label_theme.tres" id="2_hjd8l"]
+[ext_resource type="Texture2D" uid="uid://bxswa7wuv1kca" path="res://assets/images/menu_arrow.png" id="3_6pfy3"]
+
+[node name="Recipe" type="Sprite2D"]
+script = ExtResource("1_d4eax")
+
+[node name="Title" type="Label" parent="."]
+offset_left = 450.0
+offset_top = 40.0
+offset_right = 1050.0
+offset_bottom = 140.0
+theme = ExtResource("2_hjd8l")
+theme_override_font_sizes/font_size = 75
+text = "Title"
+horizontal_alignment = 1
+
+[node name="Description" type="Label" parent="."]
+offset_left = 450.0
+offset_top = 400.0
+offset_right = 1050.0
+offset_bottom = 600.0
+theme = ExtResource("2_hjd8l")
+text = "THis is a descriptions"
+horizontal_alignment = 1
+
+[node name="Decorative" type="Node" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Decorative"]
+position = Vector2(750, 212.5)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("3_6pfy3")
+
+[node name="CraftButton" type="Button" parent="."]
+offset_left = 625.0
+offset_top = 349.0
+offset_right = 875.0
+offset_bottom = 399.0
+theme = ExtResource("2_hjd8l")
+theme_override_font_sizes/font_size = 32
+text = "Craft"
+
+[connection signal="pressed" from="CraftButton" to="." method="_on_button_pressed"]

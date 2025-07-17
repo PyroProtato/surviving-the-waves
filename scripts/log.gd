@@ -3,6 +3,9 @@ extends Area2D
 @onready var hitbox: CollisionShape2D = $CollisionShape2D
 @onready var game_manager: Node2D = get_node("/root/Main/Managing Nodes/GameManager")
 @onready var raft: TileMapLayer = get_node("/root/Main/Raft")
+@onready var player: CharacterBody2D = get_node("/root/Main/Player")
+@onready var object_manager: Node2D = get_node("/root/Main/Objects/ObjectManager")
+@onready var outline: Line2D = $Outline
 
 var interactible = false
 
@@ -13,6 +16,13 @@ var target_position
 var moving = true
 
 var SPEED = 120
+
+var popup
+var e_popup = preload("res://scenes/e_popup.tscn")
+
+var PICKUP_DISTANCE = 200
+
+var mouse_hovering = false
 
 func _ready() -> void:
 	#Gets random position
@@ -40,12 +50,28 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	#Pick Up Logic
 	if Input.is_action_just_pressed("pick_up") and interactible:
+		object_manager.objects.erase(self)
+		game_manager.add_item("wood", 1)
+		object_manager.num_wood -= 1
 		self.queue_free()
-		game_manager.wood += 1
 		
 	#Movement Logic
-	if moving:
+	if moving and not game_manager.in_menu:
 		position = position.move_toward(self.target_position, SPEED*delta)
+	
+	#Interactible logic
+	if not interactible and mouse_hovering and self not in object_manager.objects and self.position.distance_to(player.position) <= PICKUP_DISTANCE:
+		object_manager.objects.append(self)
+	if interactible and self in object_manager.objects and not mouse_hovering or self.position.distance_to(player.position) > PICKUP_DISTANCE:
+		interactible = false
+		object_manager.objects.erase(self)
+		
+	#Outline logic
+	if interactible:
+		self.outline.visible = true
+	elif self.outline.visible == true:
+		self.outline.visible = false
+	
 
 
 func _on_body_entered(body: Node2D) -> void:
@@ -57,9 +83,9 @@ func _on_body_exited(body: Node2D) -> void:
 		moving = true
 
 
-func _on_area_entered(_area: Area2D) -> void:
-	interactible = true # Replace with function body.
+func _on_mouse_entered() -> void:
+	mouse_hovering = true
 
 
-func _on_area_exited(_area: Area2D) -> void:
-	interactible = false # Replace with function body.
+func _on_mouse_exited() -> void:
+	mouse_hovering = false
