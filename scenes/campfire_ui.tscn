@@ -1,0 +1,76 @@
+[gd_scene load_steps=6 format=3 uid="uid://b064tln4w26ib"]
+
+[ext_resource type="Script" uid="uid://v0fb8lkpaicb" path="res://scripts/campfire_ui.gd" id="1_sj0l4"]
+[ext_resource type="PackedScene" uid="uid://d0mq0a785re76" path="res://scenes/slot.tscn" id="2_py4i3"]
+[ext_resource type="PackedScene" uid="uid://d3igyixqayxt6" path="res://scenes/tool_tip.tscn" id="3_t7djh"]
+[ext_resource type="Texture2D" uid="uid://d2pq0wy30bjbi" path="res://assets/images/progress bar least rounded progress red.png" id="4_py4i3"]
+[ext_resource type="Texture2D" uid="uid://2ob8k5d7m8yo" path="res://assets/images/progress bar most rounded progress orange.png" id="5_t7djh"]
+
+[node name="CampfireUI" type="CanvasLayer"]
+script = ExtResource("1_sj0l4")
+
+[node name="Style" type="Node" parent="."]
+
+[node name="Polygon2D" type="Polygon2D" parent="Style"]
+color = Color(0.0980392, 0.0980392, 0.0980392, 0.478431)
+polygon = PackedVector2Array(-24, -26, 1168, -28, 1167, 665, -22, 672)
+uv = PackedVector2Array(-1, -1, 1153, 1, 1155, 648, 0, 651)
+
+[node name="Slot" parent="." instance=ExtResource("2_py4i3")]
+position = Vector2(376, 200)
+
+[node name="Slot2" parent="." instance=ExtResource("2_py4i3")]
+position = Vector2(376, 400)
+
+[node name="Slot3" parent="." instance=ExtResource("2_py4i3")]
+position = Vector2(776, 300)
+
+[node name="ExitToolTip" parent="." instance=ExtResource("3_t7djh")]
+text = "to exit"
+key_path = "res://assets/images/Keys/E-Key.png"
+index = 16
+
+[node name="ChestSlotToolTip" parent="." instance=ExtResource("3_t7djh")]
+visible = false
+text = "to take full stack"
+key_path = "res://assets/images/mouse.png"
+index = 1
+side = 1
+
+[node name="ChestSlotToolTip2" parent="." instance=ExtResource("3_t7djh")]
+visible = false
+text = "to take 1"
+key_path = "res://assets/images/mouse.png"
+
+[node name="HotbarToolTip" parent="." instance=ExtResource("3_t7djh")]
+visible = false
+text = "to store full stack"
+key_path = "res://assets/images/mouse.png"
+index = 1
+side = 1
+
+[node name="HotbarToolTip2" parent="." instance=ExtResource("3_t7djh")]
+visible = false
+text = "to store 1"
+key_path = "res://assets/images/mouse.png"
+
+[node name="ProgressBar" type="TextureProgressBar" parent="."]
+offset_left = 437.5
+offset_top = 267.5
+offset_right = 469.5
+offset_bottom = 275.5
+scale = Vector2(8, 8)
+texture_progress = ExtResource("4_py4i3")
+
+[node name="FuelBar" type="TextureProgressBar" parent="."]
+offset_left = 362.5
+offset_top = 362.5
+offset_right = 394.5
+offset_bottom = 370.5
+rotation = -1.5708
+scale = Vector2(3, 3)
+texture_progress = ExtResource("5_t7djh")
+
+[connection signal="clicked" from="Slot" to="." method="_on_slot_clicked"]
+[connection signal="clicked" from="Slot2" to="." method="_on_slot_2_clicked"]
+[connection signal="clicked" from="Slot3" to="." method="_on_slot_3_clicked"]

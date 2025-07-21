@@ -10,13 +10,13 @@ script = ExtResource("2_yfw8c")
 
 [node name="Title" type="Label" parent="."]
 layout_mode = 0
+offset_left = 25.0
 offset_top = -5.0
-offset_right = 200.0
+offset_right = 225.0
 offset_bottom = 95.0
 theme = ExtResource("1_6w0rd")
 theme_override_font_sizes/font_size = 60
 text = "Item"
-horizontal_alignment = 1
 vertical_alignment = 1
 
 [connection signal="pressed" from="." to="." method="_on_pressed"]

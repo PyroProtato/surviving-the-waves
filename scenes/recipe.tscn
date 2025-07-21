@@ -23,7 +23,6 @@ offset_top = 400.0
 offset_right = 1050.0
 offset_bottom = 600.0
 theme = ExtResource("2_hjd8l")
-text = "THis is a descriptions"
 horizontal_alignment = 1
 
 [node name="Decorative" type="Node" parent="."]

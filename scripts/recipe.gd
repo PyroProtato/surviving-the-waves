@@ -2,6 +2,7 @@ extends Sprite2D
 
 @onready var title: Label = $Title
 @onready var craft_button: Button = $CraftButton
+@onready var description: Label = $Description
 
 @onready var game_manager: Node2D = get_node("/root/Main/Managing Nodes/GameManager")
 
@@ -39,10 +40,13 @@ func _ready() -> void:
 			title_text += " + "
 		title_text += data[1][product_i][0].capitalize()
 	self.title.text = title_text
+	
+	#Sets Description
+	description.text = data[2]
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 
 

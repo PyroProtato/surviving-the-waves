@@ -13,16 +13,12 @@ func _ready() -> void:
 	#Creates Slot Display
 	slot = slot_scene.instantiate()
 	slot.data = data[1][0]
-	slot.position = Vector2(250, 50)
+	slot.position = Vector2(350, 50)
 	add_child(slot)
 	
 	#Title
-	title.text = data[1][0][0].capitalize() + " " + str(data[1][0][1]) + "x"
+	title.text = data[1][0][0].capitalize()
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
 
 
 func _on_pressed() -> void:

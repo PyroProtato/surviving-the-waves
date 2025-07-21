@@ -1,12 +1,25 @@
 extends Node2D
 
 var log_scene = preload("res://scenes/log.tscn")
+var object_scene = preload("res://scenes/object.tscn")
+@onready var game_manager: Node2D = get_node("/root/Main/Managing Nodes/GameManager")
+@onready var item_database: Node = get_node("/root/Main/Managing Nodes/ItemDatabase")
 @onready var wood_timer: Timer = $WoodTimer
-var WOOD_LIMIT = 20
+@onready var tool_tip: CanvasLayer = $ToolTip
+
+var WOOD_LIMIT = 200000
 var num_wood = 0
 
 var objects = []
 
+const PICKUP_DISTANCE = 400
+
+var lastlog = null
+var started_next_log = false
+
+var specific_tooltip = null
+var tooltip_scene = preload("res://scenes/tool_tip.tscn")
+var tooltip_item = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -16,7 +29,8 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	#Interactible logic
-	if objects.size() > 0:
+	if objects.size() > 0 and not game_manager.in_menu:
+		tool_tip.visible = true
 		var top_object = null
 		var top_index = -1
 		for object in objects:
@@ -29,10 +43,51 @@ func _process(_delta: float) -> void:
 				object.interactible = true
 			else:
 				object.interactible = false
+	else:
+		tool_tip.visible = false
+	
+	#Delay
+	if lastlog != null:
+		if lastlog.moving == false and wood_timer.is_stopped():
+			start_next_log_timer()
+	if started_next_log:
+		if game_manager.in_menu == true:
+			wood_timer.paused = true
+		else:
+			wood_timer.paused = false
+	
+	
+	#Specific Item Tooltip
+	if specific_tooltip == null and item_database.specific_tooltips.has(game_manager.selected_item()):
+		tooltip_item = game_manager.selected_item()
+		specific_tooltip = tooltip_scene.instantiate()
+		specific_tooltip.text = item_database.specific_tooltips[game_manager.selected_item()]
+		specific_tooltip.key_path = "res://assets/images/mouse.png"
+		specific_tooltip.index = 2
+		specific_tooltip.side = 1
+		add_child(specific_tooltip)
+	elif specific_tooltip != null and tooltip_item != game_manager.selected_item():
+		specific_tooltip.queue_free()
+		specific_tooltip = null
+		
+
 
 
 func _on_wood_timer_timeout() -> void:
 	if not num_wood >= WOOD_LIMIT:
-		var log1 = log_scene.instantiate()
-		add_child(log1)
+		lastlog = log_scene.instantiate()
+		add_child(lastlog)
 		num_wood += 1
+
+
+func summon_generic_object(id, texture_path, pos):
+	var temp = object_scene.instantiate()
+	temp.id = id
+	temp.texture = texture_path
+	temp.coords = pos
+	add_child(temp)
+	
+
+func start_next_log_timer():
+	started_next_log = true
+	wood_timer.start(randi_range(2, 5))

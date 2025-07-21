@@ -1,0 +1,43 @@
+[gd_scene load_steps=3 format=3 uid="uid://daop4s7wgc5a7"]
+
+[ext_resource type="Script" uid="uid://b4jxsky00vlr" path="res://scripts/starting_message.gd" id="1_e5fit"]
+[ext_resource type="Theme" uid="uid://cs25uxf8x287n" path="res://themes/label_theme.tres" id="3_dp36w"]
+
+[node name="Starting Message" type="CanvasLayer"]
+script = ExtResource("1_e5fit")
+
+[node name="Style" type="Node" parent="."]
+
+[node name="Polygon2D" type="Polygon2D" parent="Style"]
+color = Color(0.0980392, 0.0980392, 0.0980392, 0.858824)
+polygon = PackedVector2Array(-24, -26, 1168, -28, 1167, 665, -22, 672)
+uv = PackedVector2Array(-1, -1, 1153, 1, 1155, 648, 0, 651)
+
+[node name="Title" type="Label" parent="."]
+offset_left = 270.0
+offset_right = 882.0
+offset_bottom = 64.0
+theme = ExtResource("3_dp36w")
+theme_override_font_sizes/font_size = 64
+text = "Welcome to Surivivng the Waves!"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Title"]
+layout_mode = 0
+offset_left = -196.0
+offset_top = 84.0
+offset_right = 794.0
+offset_bottom = 544.0
+theme = ExtResource("3_dp36w")
+theme_override_font_sizes/normal_font_size = 32
+text = "A game by Pyroprotato about surviving on a raft!
+This game is still in development, many more features will be added later.
+This is also my first big project in Godot, ~30 hrs so far.
+
+Controls:  Move with WASD, Interact with E, Pick Up and Use Items with Mouse Clicks, and Change Hotbar Slots with Number Keys or Scroll Wheel
+
+(TIP):  During the game, wood will be spawned in the ocean and float towards the raft. Pick them up and use them to make items in the crafting table.
+
+Also thanks a lot to Icepenguin000 for helping with art and playtesting for this project!
+
+PRESS E TO START"
+horizontal_alignment = 1

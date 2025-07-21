@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=3 uid="uid://dmqprh7knso0q"]
+
+[ext_resource type="PackedScene" uid="uid://d0mq0a785re76" path="res://scenes/slot.tscn" id="1_8wgj1"]
+[ext_resource type="Script" uid="uid://iuo44t75e5c4" path="res://scenes/chest_ui.gd" id="1_kenpi"]
+
+[node name="ChestUI" type="CanvasLayer"]
+script = ExtResource("1_kenpi")
+
+[node name="Style" type="Node" parent="."]
+
+[node name="Polygon2D" type="Polygon2D" parent="Style"]
+color = Color(0.0980392, 0.0980392, 0.0980392, 0.478431)
+polygon = PackedVector2Array(-24, -26, 1168, -28, 1167, 665, -22, 672)
+uv = PackedVector2Array(-1, -1, 1153, 1, 1155, 648, 0, 651)
+
+[node name="Slot" parent="." instance=ExtResource("1_8wgj1")]
+position = Vector2(276, 300)
+
+[node name="Slot2" parent="." instance=ExtResource("1_8wgj1")]
+position = Vector2(376, 300)
+
+[node name="Slot3" parent="." instance=ExtResource("1_8wgj1")]
+position = Vector2(476, 300)
+
+[node name="Slot4" parent="." instance=ExtResource("1_8wgj1")]
+position = Vector2(576, 300)
+
+[node name="Slot5" parent="." instance=ExtResource("1_8wgj1")]
+position = Vector2(676, 300)
+
+[node name="Slot6" parent="." instance=ExtResource("1_8wgj1")]
+position = Vector2(776, 300)
+
+[node name="Slot7" parent="." instance=ExtResource("1_8wgj1")]
+position = Vector2(876, 300)

@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://chgoo7yd8nyj0"]
 
 [ext_resource type="Script" uid="uid://cnjysgjy6qqqj" path="res://scripts/crafting_table.gd" id="1_4xt1u"]
-[ext_resource type="Texture2D" uid="uid://ch7f548ovjgwk" path="res://assets/images/crafting_table.png" id="1_87o7u"]
+[ext_resource type="Texture2D" uid="uid://dxg8gaiml3tcf" path="res://assets/images/crafting_table.png" id="1_87o7u"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_87o7u"]
 size = Vector2(399, 389)

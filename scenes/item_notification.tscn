@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://4u75k48xdjuo"]
+
+[ext_resource type="Theme" uid="uid://cs25uxf8x287n" path="res://themes/label_theme.tres" id="1_2t1bs"]
+[ext_resource type="Script" uid="uid://xqhsau732lsi" path="res://scripts/item_notification.gd" id="2_tp5bc"]
+
+[node name="Item Notification" type="Label"]
+offset_left = 200.0
+offset_top = -125.0
+offset_right = 400.0
+offset_bottom = -50.0
+theme = ExtResource("1_2t1bs")
+theme_override_colors/font_color = Color(0, 0.878431, 0, 1)
+theme_override_font_sizes/font_size = 50
+text = "+1 Item"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("2_tp5bc")
+
+[node name="Lifespan" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+autostart = true

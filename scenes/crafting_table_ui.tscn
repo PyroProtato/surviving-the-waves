@@ -1,14 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://5wl7enearnxo"]
+[gd_scene load_steps=3 format=3 uid="uid://5wl7enearnxo"]
 
 [ext_resource type="Script" uid="uid://b1wr7lbjqvrxp" path="res://scripts/crafting_table_ui.gd" id="1_2gv1w"]
+[ext_resource type="PackedScene" uid="uid://d3igyixqayxt6" path="res://scenes/tool_tip.tscn" id="2_3sjbl"]
 
 [node name="CraftingTableUI" type="CanvasLayer"]
 script = ExtResource("1_2gv1w")
-
-[node name="Label" type="Label" parent="."]
-offset_right = 40.0
-offset_bottom = 23.0
-text = "HIIIII"
 
 [node name="Style" type="Node" parent="."]
 
@@ -20,10 +16,15 @@ uv = PackedVector2Array(-1, -1, 1153, 1, 1155, 648, 0, 651)
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
 offset_left = 50.0
 offset_top = 50.0
-offset_right = 350.0
-offset_bottom = 550.0
+offset_right = 450.0
+offset_bottom = 450.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+
+[node name="ExitToolTip" parent="." instance=ExtResource("2_3sjbl")]
+text = "to exit"
+key_path = "res://assets/images/Keys/E-Key.png"
+index = 15
