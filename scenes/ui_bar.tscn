@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=3 uid="uid://b8lu1ovi6v313"]
+
+[ext_resource type="Script" uid="uid://c0jtvnlvpeuak" path="res://ui_bar.gd" id="1_wsua1"]
+[ext_resource type="Theme" uid="uid://cs25uxf8x287n" path="res://themes/label_theme.tres" id="2_yfusy"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wsua1"]
+bg_color = Color(0.176471, 0.176471, 0.176471, 0.635294)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.129558, 0.129559, 0.129558, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+expand_margin_left = 3.0
+expand_margin_top = 3.0
+expand_margin_right = 3.0
+expand_margin_bottom = 3.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nab0r"]
+bg_color = Color(1, 0, 0.117647, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="UI Bar" type="ProgressBar"]
+offset_right = 336.0
+offset_bottom = 27.0
+theme_override_styles/background = SubResource("StyleBoxFlat_wsua1")
+theme_override_styles/fill = SubResource("StyleBoxFlat_nab0r")
+step = 1.0
+value = 50.0
+rounded = true
+show_percentage = false
+script = ExtResource("1_wsua1")
+
+[node name="ValueLabel" type="Label" parent="."]
+layout_mode = 2
+offset_right = 1.0
+offset_bottom = 23.0
+theme = ExtResource("2_yfusy")
+theme_override_font_sizes/font_size = 24
+horizontal_alignment = 1
+vertical_alignment = 1

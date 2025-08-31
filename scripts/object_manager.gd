@@ -6,6 +6,7 @@ var object_scene = preload("res://scenes/object.tscn")
 @onready var item_database: Node = get_node("/root/Main/Managing Nodes/ItemDatabase")
 @onready var wood_timer: Timer = $WoodTimer
 @onready var tool_tip: CanvasLayer = $ToolTip
+@onready var background: TileMapLayer = %Background
 
 var WOOD_LIMIT = 200000
 var num_wood = 0
@@ -57,20 +58,35 @@ func _process(_delta: float) -> void:
 			wood_timer.paused = false
 	
 	
-	#Specific Item Tooltip
-	if specific_tooltip == null and item_database.specific_tooltips.has(game_manager.selected_item()):
-		tooltip_item = game_manager.selected_item()
-		specific_tooltip = tooltip_scene.instantiate()
-		specific_tooltip.text = item_database.specific_tooltips[game_manager.selected_item()]
-		specific_tooltip.key_path = "res://assets/images/mouse.png"
-		specific_tooltip.index = 2
-		specific_tooltip.side = 1
-		add_child(specific_tooltip)
-	elif specific_tooltip != null and tooltip_item != game_manager.selected_item():
-		specific_tooltip.queue_free()
-		specific_tooltip = null
+	#Specific Item Tooltips
+	if not game_manager.in_menu:
+		var selected_item = game_manager.selected_item()
+		
+		if selected_item == "fishing_rod": #Fishing rod specifically
+			if specific_tooltip == null and background.get_cell_tile_data(background.local_to_map(background.get_global_mouse_position())) != null:
+				add_mouse_tool_tip(selected_item)
+			elif specific_tooltip != null and background.get_cell_tile_data(background.local_to_map(background.get_global_mouse_position())) == null:
+				specific_tooltip.queue_free()
+				specific_tooltip = null
+		
+				
+		elif specific_tooltip == null and item_database.specific_tooltips.has(selected_item):
+			add_mouse_tool_tip(selected_item)
+			
+		if specific_tooltip != null and tooltip_item != selected_item:
+			specific_tooltip.queue_free()
+			specific_tooltip = null
 		
 
+
+func add_mouse_tool_tip(item):
+	tooltip_item = item
+	specific_tooltip = tooltip_scene.instantiate()
+	specific_tooltip.text = item_database.specific_tooltips[item]
+	specific_tooltip.key_path = "res://assets/images/mouse.png"
+	specific_tooltip.index = 2
+	specific_tooltip.side = 1
+	add_child(specific_tooltip)
 
 
 func _on_wood_timer_timeout() -> void:

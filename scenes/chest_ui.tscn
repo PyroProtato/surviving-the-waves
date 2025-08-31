@@ -60,6 +60,7 @@ text = "to store 1"
 key_path = "res://assets/images/mouse.png"
 
 [node name="ExitToolTip" parent="." instance=ExtResource("3_0bdxf")]
+layer = 2
 text = "to exit"
 key_path = "res://assets/images/Keys/E-Key.png"
 index = 16

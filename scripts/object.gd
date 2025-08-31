@@ -47,7 +47,7 @@ func _ready() -> void:
 	
 	
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	#Pick Up Logic
 	if Input.is_action_just_pressed("pick_up") and interactible and game_manager.selected_item() not in item_database.activ:
 		object_manager.objects.erase(self)

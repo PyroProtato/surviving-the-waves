@@ -1,6 +1,6 @@
 extends Node
 
-var fishing_loot_table = [["fish", 60, [["cod", 75], ["salmon", 25]]], ["trash", 30], ["treasure", 10, [["raw_iron", 60], ["raw_gold", 40]]]]
+var fishing_loot_table = [["fish", 60, [["stone", 50], ["cod", 25], ["salmon", 25]]], ["trash", 30], ["treasure", 10, [["raw_iron", 60], ["raw_gold", 40]]]]
 
 var trash_loot_table = [["stone", 30], ["wood", 40], ["nothing", 25], ["raw_iron", 5]]
 

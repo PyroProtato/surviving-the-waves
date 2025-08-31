@@ -1,8 +1,211 @@
-[gd_scene load_steps=2 format=3 uid="uid://srqmmvy3cvp7"]
+[gd_scene load_steps=15 format=3 uid="uid://srqmmvy3cvp7"]
 
+[ext_resource type="Script" uid="uid://dyassbm5b7qf8" path="res://scripts/night_shader.gd" id="1_6fi6k"]
 [ext_resource type="PackedScene" uid="uid://r85aypvaqq3k" path="res://scenes/hotbar.tscn" id="1_oo0fn"]
+[ext_resource type="Theme" uid="uid://cs25uxf8x287n" path="res://themes/label_theme.tres" id="2_uo2fv"]
+[ext_resource type="Script" uid="uid://djewh0empqq5b" path="res://scripts/time_label.gd" id="3_047uy"]
+[ext_resource type="PackedScene" uid="uid://b8lu1ovi6v313" path="res://scenes/ui_bar.tscn" id="5_uo2fv"]
+
+[sub_resource type="Animation" id="Animation_kmb1v"]
+resource_name = "AfternoonAnimation"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.847059, 0.517647, 0.0980392, 0.0588235), Color(0, 0, 0.0980392, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_6fi6k"]
+resource_name = "EarlyMorningAnimation"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0.0980392, 0.580392), Color(0, 0, 0.0980392, 0.729412)]
+}
+
+[sub_resource type="Animation" id="Animation_fuf3a"]
+resource_name = "EveningAnimation"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0.0980392, 0), Color(0.475132, 0.104088, 9.62615e-08, 0.258824)]
+}
+
+[sub_resource type="Animation" id="Animation_j8jky"]
+resource_name = "MorningAnimation"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0.0980392, 0.580392), Color(0.847059, 0.517647, 0.0980392, 0.0588235)]
+}
+
+[sub_resource type="Animation" id="Animation_5q0nq"]
+resource_name = "fade_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.47451, 0.105882, 0, 0.258824), Color(0, 0, 0.0980392, 0.580392)]
+}
+
+[sub_resource type="Animation" id="Animation_dgi5k"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0.0980392, 0.580392)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_j8jky"]
+_data = {
+&"AfternoonAnimation": SubResource("Animation_kmb1v"),
+&"EarlyMorningAnimation": SubResource("Animation_6fi6k"),
+&"EveningAnimation": SubResource("Animation_fuf3a"),
+&"MorningAnimation": SubResource("Animation_j8jky"),
+&"NightAnimation": SubResource("Animation_5q0nq"),
+&"RESET": SubResource("Animation_dgi5k")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uo2fv"]
+bg_color = Color(0.176471, 0.176471, 0.176471, 0.635294)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.129558, 0.129559, 0.129558, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+expand_margin_left = 3.0
+expand_margin_top = 3.0
+expand_margin_right = 3.0
+expand_margin_bottom = 3.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_047uy"]
+bg_color = Color(0.893378, 0.321487, 0.0555205, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [node name="HUD" type="CanvasLayer"]
+layer = 0
 
-[node name="Hotbar" parent="." instance=ExtResource("1_oo0fn")]
+[node name="NightShader" type="ColorRect" parent="."]
+modulate = Color(0, 0, 0.0980392, 0.580392)
+z_index = -2
+offset_right = 1152.0
+offset_bottom = 648.0
+mouse_filter = 2
+script = ExtResource("1_6fi6k")
+
+[node name="MorningTimer" type="Timer" parent="NightShader"]
+wait_time = 5.0
+one_shot = true
+autostart = true
+
+[node name="AfternoonTimer" type="Timer" parent="NightShader"]
+wait_time = 5.0
+one_shot = true
+
+[node name="EveningTimer" type="Timer" parent="NightShader"]
+wait_time = 5.0
+one_shot = true
+
+[node name="NightTimer" type="Timer" parent="NightShader"]
+wait_time = 5.0
+one_shot = true
+
+[node name="EarlyMorningTimer" type="Timer" parent="NightShader"]
+wait_time = 5.0
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="NightShader"]
+libraries = {
+&"": SubResource("AnimationLibrary_j8jky")
+}
+
+[node name="TimeLabel" type="Label" parent="."]
+visible = false
+offset_left = 451.0
+offset_top = 15.0
+offset_right = 701.0
+offset_bottom = 65.0
+theme = ExtResource("2_uo2fv")
+text = "Time: Morning"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("3_047uy")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="Hotbar" parent="CanvasLayer" instance=ExtResource("1_oo0fn")]
+z_index = 3
 position = Vector2(276, 550)
+
+[node name="Healthbar" parent="." instance=ExtResource("5_uo2fv")]
+offset_left = 25.0
+offset_top = 25.0
+offset_right = 375.0
+offset_bottom = 52.0
+value = 100.0
+varname = "health"
+
+[node name="Hungerbar" parent="." instance=ExtResource("5_uo2fv")]
+offset_left = 25.0
+offset_top = 62.5
+offset_right = 375.0
+offset_bottom = 89.5
+theme_override_styles/background = SubResource("StyleBoxFlat_uo2fv")
+theme_override_styles/fill = SubResource("StyleBoxFlat_047uy")
+max_value = 20.0
+value = 20.0
+varname = "hunger"
+
+[connection signal="timeout" from="NightShader/MorningTimer" to="NightShader" method="_on_morning_timer_timeout"]
+[connection signal="timeout" from="NightShader/AfternoonTimer" to="NightShader" method="_on_afternoon_timer_timeout"]
+[connection signal="timeout" from="NightShader/EveningTimer" to="NightShader" method="_on_evening_timer_timeout"]
+[connection signal="timeout" from="NightShader/NightTimer" to="NightShader" method="_on_night_timer_timeout"]
+[connection signal="timeout" from="NightShader/EarlyMorningTimer" to="NightShader" method="_on_early_morning_timer_timeout"]

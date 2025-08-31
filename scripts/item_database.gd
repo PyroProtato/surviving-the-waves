@@ -29,7 +29,9 @@ var blocks = {
 var specific_tooltips = {
 	"fishing_rod":"to fish",
 	"pickaxe":"to break",
-	"trash":"to rummage"
+	"trash":"to rummage",
+	"cod":"to eat",
+	"salmon":"to eat"
 }
 
 var fuel = {
@@ -41,4 +43,13 @@ var smeltable = {
 	"raw_gold":"gold"
 }
 
+var food = {
+	"salmon":5,
+	"cod":3
+}
+
 var activ = ["fishing_rod", "pickaxe", "trash"]
+
+func _ready() -> void:
+	for item in food:
+		activ.append(item)

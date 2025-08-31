@@ -2,9 +2,13 @@ extends TileMapLayer
 
 @onready var background: TileMapLayer = %Background
 @onready var game_manager = get_node("/root/Main/Managing Nodes/GameManager")
+@onready var item_database = get_node("/root/Main/Managing Nodes/ItemDatabase")
+@onready var object_manager: Node2D = %ObjectManager
 
-const RAFT_ATLAS = Vector2(2, 3)
-const WATER_ATLAS = Vector2(1, 0)
+@onready var place_block_sound: AudioStreamPlayer = get_node("/root/Main/Managing Nodes/SoundManager/PlaceBlockSound")
+
+const RAFT_ATLAS = Vector2(1, 0)
+const WATER_ATLAS = Vector2(0, 0)
 
 var occupied_tiles = [Vector2i(-2, -1), Vector2i(1, -1)]
 var player_occupied_tiles = []
@@ -19,11 +23,12 @@ func _process(_delta: float) -> void:
 	#Placing a raft tile
 	var mousePos = get_global_mouse_position()
 	var cellPos = self.local_to_map(mousePos)
-	if Input.is_action_just_pressed("place") and game_manager.selected_item() == "raft" and self.get_cell_tile_data(cellPos) == null:
+	if not game_manager.in_menu and Input.is_action_just_pressed("place") and game_manager.selected_item() == "raft" and self.get_cell_tile_data(cellPos) == null:
 		if game_manager.remove_item("raft", 1):
 			
 			self.set_cell(cellPos, 0, RAFT_ATLAS)
 			background.set_cell(cellPos, 0)
+			place_block_sound.play()
 		
 	#Deleting a raft tile
 	#if Input.is_action_just_pressed("destroy"):
@@ -35,6 +40,11 @@ func _process(_delta: float) -> void:
 
 
 func delete_cell(cellPos):
-	self.set_cell(cellPos, 0)
+	self.set_cell(cellPos, -1)
 	background.set_cell(cellPos, 0, WATER_ATLAS)
 	game_manager.add_item("raft", 1)
+
+func destroy_cell(cellPos):
+	self.set_cell(cellPos, -1)
+	background.set_cell(cellPos, 0, WATER_ATLAS)
+	object_manager.summon_generic_object("raft", item_database.paths["raft"], cellPos*128)

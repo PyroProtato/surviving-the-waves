@@ -2,13 +2,13 @@ extends CanvasLayer
 
 @onready var game_manager: Node2D = get_node("/root/Main/Managing Nodes/GameManager")
 
-@onready var hotbar1: Node2D = get_node("/root/Main/HUD/Hotbar/Slot1")
-@onready var hotbar2: Node2D = get_node("/root/Main/HUD/Hotbar/Slot2")
-@onready var hotbar3: Node2D = get_node("/root/Main/HUD/Hotbar/Slot3")
-@onready var hotbar4: Node2D = get_node("/root/Main/HUD/Hotbar/Slot4")
-@onready var hotbar5: Node2D = get_node("/root/Main/HUD/Hotbar/Slot5")
-@onready var hotbar6: Node2D = get_node("/root/Main/HUD/Hotbar/Slot6")
-@onready var hotbar7: Node2D = get_node("/root/Main/HUD/Hotbar/Slot7")
+@onready var hotbar1: Node2D = get_node("/root/Main/HUD/CanvasLayer/Hotbar/Slot1")
+@onready var hotbar2: Node2D = get_node("/root/Main/HUD/CanvasLayer/Hotbar/Slot2")
+@onready var hotbar3: Node2D = get_node("/root/Main/HUD/CanvasLayer/Hotbar/Slot3")
+@onready var hotbar4: Node2D = get_node("/root/Main/HUD/CanvasLayer/Hotbar/Slot4")
+@onready var hotbar5: Node2D = get_node("/root/Main/HUD/CanvasLayer/Hotbar/Slot5")
+@onready var hotbar6: Node2D = get_node("/root/Main/HUD/CanvasLayer/Hotbar/Slot6")
+@onready var hotbar7: Node2D = get_node("/root/Main/HUD/CanvasLayer/Hotbar/Slot7")
 
 @onready var slot_1: Node2D = $Slot
 @onready var slot_2: Node2D = $Slot2
@@ -23,6 +23,7 @@ extends CanvasLayer
 @onready var hotbar_tool_tip: CanvasLayer = $HotbarToolTip
 @onready var hotbar_tool_tip_2: CanvasLayer = $HotbarToolTip2
 
+@onready var chest_close_sound: AudioStreamPlayer = get_node("/root/Main/Managing Nodes/SoundManager/ChestCloseSound")
 
 var chest
 var data
@@ -51,6 +52,7 @@ func _process(_delta: float) -> void:
 	#Exiting
 	if Input.is_action_just_pressed("interact"):
 		game_manager.unpause_game()
+		chest_close_sound.play()
 		self.queue_free()
 	
 	

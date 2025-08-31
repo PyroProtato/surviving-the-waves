@@ -5,6 +5,7 @@ extends Sprite2D
 @onready var description: Label = $Description
 
 @onready var game_manager: Node2D = get_node("/root/Main/Managing Nodes/GameManager")
+@onready var crafting_sound: AudioStreamPlayer = get_node("/root/Main/Managing Nodes/SoundManager/CraftingSound")
 
 var data
 var slot = preload("res://scenes/slot.tscn")
@@ -60,6 +61,7 @@ func _on_button_pressed() -> void:
 	
 	#Takes ingredients and gives products
 	if has_ingredients:
+		crafting_sound.play()
 		for ingredient_data in data[0]:
 			game_manager.remove_item(ingredient_data[0], ingredient_data[1])
 		for product_data in data[1]:

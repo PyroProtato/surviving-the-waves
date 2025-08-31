@@ -10,6 +10,8 @@ var character_direction : Vector2
 
 @onready var interact_hitbox: CollisionShape2D = $Area2D/CollisionShape2D
 
+@onready var walking_sound: AudioStreamPlayer = $WalkingSound
+
 func _physics_process(delta):
 	if game_manager.in_menu == false:
 
@@ -62,6 +64,10 @@ func _physics_process(delta):
 			animated_sprite.flip_h = true
 		if walking_a_direction == false:
 			animated_sprite.play("idle")
+			walking_sound.playing = false
+		else:
+			if not walking_sound.playing:
+				walking_sound.playing = true
 		
 		#Moves the hitbox
 		if Input.is_action_just_pressed("move_up"):
@@ -80,4 +86,5 @@ func _physics_process(delta):
 	else:
 		#When in menu
 		animated_sprite.play("idle")
+		walking_sound.playing = false
 	

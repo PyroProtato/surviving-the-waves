@@ -6,7 +6,7 @@ var pickaxe_recipe = [[["wood", 2], ["iron", 3]], [["pickaxe", 1]], "Can be used
 var chest_recipe = [[["wood", 8]], [["chest", 1]], "Used to store items"]
 var campfire_recipe = [[["wood", 3], ["stone", 3]], [["campfire", 1]], "Used to smelt items"]
 
-var recipes = [raft_recipe, fishing_rod_recipe, campfire_recipe, chest_recipe, pickaxe_recipe]
+var recipes = [fishing_rod_recipe, raft_recipe, campfire_recipe, chest_recipe, pickaxe_recipe]
 
 
 func add_recipe(recipe):

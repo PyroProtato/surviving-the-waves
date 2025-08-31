@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bpl0bm41pvuxg"]
 
 [ext_resource type="Script" uid="uid://cehb0id3qr4rm" path="res://scripts/campfire.gd" id="1_54scn"]
-[ext_resource type="Texture2D" uid="uid://dwqpg4xoi0vp0" path="res://assets/images/campfire.png" id="2_54scn"]
+[ext_resource type="Texture2D" uid="uid://cqrwo00oe7jyg" path="res://assets/images/campfire.png" id="2_54scn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_87o7u"]
 size = Vector2(399, 389)
@@ -12,7 +12,8 @@ collision_mask = 8
 script = ExtResource("1_54scn")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.25, 0.25)
+position = Vector2(0, -10)
+scale = Vector2(4, 4)
 texture = ExtResource("2_54scn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

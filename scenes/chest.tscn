@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://c26as5wkteaxc"]
 
 [ext_resource type="Script" uid="uid://dvtb13l7hu5n8" path="res://scripts/chest.gd" id="1_sy5e1"]
-[ext_resource type="Texture2D" uid="uid://b3qq2bcd7mljq" path="res://assets/images/chest.png" id="2_sy5e1"]
+[ext_resource type="Texture2D" uid="uid://ck8u4faae7dj7" path="res://assets/images/chest.png" id="2_sy5e1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_87o7u"]
 size = Vector2(399, 389)
@@ -12,7 +12,7 @@ collision_mask = 8
 script = ExtResource("1_sy5e1")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.25, 0.25)
+scale = Vector2(4, 4)
 texture = ExtResource("2_sy5e1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

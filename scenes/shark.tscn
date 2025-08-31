@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://bo00ndash3dy7"]
+
+[ext_resource type="Script" uid="uid://bw0ngfgvxyhp1" path="res://scripts/shark.gd" id="1_8l5qy"]
+[ext_resource type="Texture2D" uid="uid://dner24762qt72" path="res://assets/images/shark_texture.png" id="2_v5iaq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8l5qy"]
+size = Vector2(115, 62)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v5iaq"]
+size = Vector2(115, 60)
+
+[node name="RigidBody2D" type="RigidBody2D"]
+collision_layer = 0
+collision_mask = 4
+contact_monitor = true
+max_contacts_reported = 1
+script = ExtResource("1_8l5qy")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(5, 5)
+texture = ExtResource("2_v5iaq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2.5, 0)
+shape = SubResource("RectangleShape2D_8l5qy")
+
+[node name="AttackTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(2.5, 0)
+shape = SubResource("RectangleShape2D_v5iaq")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
+[connection signal="body_exited" from="Hitbox" to="." method="_on_hitbox_body_exited"]

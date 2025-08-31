@@ -4,6 +4,8 @@ extends StaticBody2D
 @onready var game_manager: Node2D = get_node("/root/Main/Managing Nodes/GameManager")
 @onready var block_manager: Node = $".."
 
+@onready var chest_open_sound: AudioStreamPlayer = get_node("/root/Main/Managing Nodes/SoundManager/ChestOpenSound")
+
 var id = "chest"
 
 var interactible = false
@@ -32,9 +34,10 @@ func _process(_delta: float) -> void:
 		hud.add_child(ui)
 		game_manager.pause_game()
 		in_own_menu = true
+		chest_open_sound.play()
 	elif in_own_menu and Input.is_action_just_pressed("interact"):
 		in_own_menu = false
-	
+		
 	#popup
 	if self.interactible_init == false and self.interactible:
 		self.interactible_init = true
