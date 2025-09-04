@@ -12,6 +12,7 @@ var wood = 10
 @onready var hungerbar: ProgressBar = get_node("/root/Main/HUD/Hungerbar")
 @onready var deathmsg: CanvasLayer = get_node("/root/Main/HUD/Death Message")
 
+
 var inventory = {"wood":5}
 var key_order = ["wood"]
 
@@ -36,9 +37,7 @@ var health = 100
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	self.add_item("pickaxe")
-	self.add_item("campfire")
-	self.add_item("raw_iron")
+	pass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -131,6 +130,8 @@ func update_ui_bar(bar, operation, num):
 		get_tree().paused = true
 		deathmsg.visible = true
 
+func lose_health(num):
+	update_ui_bar(healthbar, "subtract", num)
 
 
 func _on_hunger_timer_timeout() -> void:
@@ -138,3 +139,5 @@ func _on_hunger_timer_timeout() -> void:
 		update_ui_bar(hungerbar, "subtract", 1)
 	else:
 		update_ui_bar(healthbar, "subtract", 10)
+
+	

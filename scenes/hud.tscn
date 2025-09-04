@@ -141,24 +141,24 @@ mouse_filter = 2
 script = ExtResource("1_6fi6k")
 
 [node name="MorningTimer" type="Timer" parent="NightShader"]
-wait_time = 5.0
+wait_time = 50.0
 one_shot = true
 autostart = true
 
 [node name="AfternoonTimer" type="Timer" parent="NightShader"]
-wait_time = 5.0
+wait_time = 50.0
 one_shot = true
 
 [node name="EveningTimer" type="Timer" parent="NightShader"]
-wait_time = 5.0
+wait_time = 50.0
 one_shot = true
 
 [node name="NightTimer" type="Timer" parent="NightShader"]
-wait_time = 5.0
+wait_time = 50.0
 one_shot = true
 
 [node name="EarlyMorningTimer" type="Timer" parent="NightShader"]
-wait_time = 5.0
+wait_time = 50.0
 one_shot = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="NightShader"]

@@ -11,6 +11,9 @@ var item_notification = preload("res://scenes/item_notification.tscn")
 @onready var slot_6: Node2D = $Slot6
 @onready var slot_7: Node2D = $Slot7
 
+@onready var item_label: Label = $ItemLabel
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+
 var hotbar_slots
 
 var selected_slot_changed = true
@@ -49,24 +52,31 @@ func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("slot1") and not game_manager.in_menu:
 		selected_slot_changed = true
 		game_manager.selected_index = 0
+		updateItemLabel(game_manager.selected_item())
 	elif Input.is_action_just_pressed("slot2") and not game_manager.in_menu:
 		selected_slot_changed = true
 		game_manager.selected_index = 1
+		updateItemLabel(game_manager.selected_item())
 	elif Input.is_action_just_pressed("slot3") and not game_manager.in_menu:
 		selected_slot_changed = true
 		game_manager.selected_index = 2
+		updateItemLabel(game_manager.selected_item())
 	elif Input.is_action_just_pressed("slot4") and not game_manager.in_menu:
 		selected_slot_changed = true
 		game_manager.selected_index = 3
+		updateItemLabel(game_manager.selected_item())
 	elif Input.is_action_just_pressed("slot5") and not game_manager.in_menu:
 		selected_slot_changed = true
 		game_manager.selected_index = 4
+		updateItemLabel(game_manager.selected_item())
 	elif Input.is_action_just_pressed("slot6") and not game_manager.in_menu:
 		selected_slot_changed = true
 		game_manager.selected_index = 5
+		updateItemLabel(game_manager.selected_item())
 	elif Input.is_action_just_pressed("slot7") and not game_manager.in_menu:
 		selected_slot_changed = true
 		game_manager.selected_index = 6
+		updateItemLabel(game_manager.selected_item())
 	
 	
 	#Raises selected slot
@@ -77,6 +87,16 @@ func _process(_delta: float) -> void:
 			else:
 				hotbar_slots[slot_index].position.y = 0
 		selected_slot_changed = false
+	
+	
+	
+func updateItemLabel(item):
+	if item != null:
+		item_label.visible = true
+		item_label.text = item.replace("_", " ").capitalize()
+		animation_player.stop(true)
+		animation_player.play("fade_text")
+	
 	
 
 

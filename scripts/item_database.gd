@@ -15,7 +15,10 @@ var paths = {
 	"stone":"res://assets/images/object_icons/stone_icon.png",
 	"raw_iron":"res://assets/images/object_icons/raw_iron.png",
 	"raw_gold":"res://assets/images/object_icons/raw_gold.png",
-	"campfire":"res://assets/images/object_icons/canpfire_icon.png"
+	"campfire":"res://assets/images/object_icons/canpfire_icon.png",
+	"sword":"res://assets/images/object_icons/sword_icon.png",
+	"raw_salmon":"res://assets/images/object_icons/raw_salmon_icon.png",
+	"raw_cod":"res://assets/images/object_icons/raw_cod_icon.png"
 }
 
 var raft = ["raft"]
@@ -30,8 +33,7 @@ var specific_tooltips = {
 	"fishing_rod":"to fish",
 	"pickaxe":"to break",
 	"trash":"to rummage",
-	"cod":"to eat",
-	"salmon":"to eat"
+	"sword":"to attack"
 }
 
 var fuel = {
@@ -40,16 +42,22 @@ var fuel = {
 
 var smeltable = {
 	"raw_iron":"iron",
-	"raw_gold":"gold"
+	"raw_gold":"gold",
+	"raw_salmon":"salmon",
+	"raw_cod":"cod"
 }
 
 var food = {
 	"salmon":5,
-	"cod":3
+	"cod":3,
+	"raw_salmon":2,
+	"raw_cod":1
 }
 
-var activ = ["fishing_rod", "pickaxe", "trash"]
+#All items that perform an action when you click
+var activ = ["fishing_rod", "pickaxe", "trash", "sword"]
 
 func _ready() -> void:
 	for item in food:
 		activ.append(item)
+		specific_tooltips[item] = "to eat"

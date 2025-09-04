@@ -1,0 +1,36 @@
+[gd_scene load_steps=2 format=3 uid="uid://lc8nf1hgirb2"]
+
+[ext_resource type="Theme" uid="uid://cs25uxf8x287n" path="res://themes/label_theme.tres" id="1_v67tw"]
+
+[node name="TerryDeathMessage" type="CanvasLayer"]
+layer = 4
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color(0.352941, 0.0980392, 0.0980392, 0.858824)
+polygon = PackedVector2Array(-24, -26, 1168, -28, 1167, 665, -22, 672)
+uv = PackedVector2Array(-1, -1, 1153, 1, 1155, 648, 0, 651)
+
+[node name="Title" type="Label" parent="."]
+offset_left = 270.0
+offset_top = 1.0
+offset_right = 882.0
+offset_bottom = 97.0
+theme = ExtResource("1_v67tw")
+theme_override_font_sizes/font_size = 96
+text = "You Died..."
+horizontal_alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Title"]
+layout_mode = 0
+offset_left = -196.0
+offset_top = 134.0
+offset_right = 794.0
+offset_bottom = 594.0
+theme = ExtResource("1_v67tw")
+theme_override_font_sizes/normal_font_size = 48
+text = "Watch PyroProtato on YT!!!!! 
+
+You kind of bad, but not as bad as this guy.
+
+Press any key to restart"
+horizontal_alignment = 1

@@ -4,6 +4,7 @@ extends TileMapLayer
 @onready var game_manager = get_node("/root/Main/Managing Nodes/GameManager")
 @onready var item_database = get_node("/root/Main/Managing Nodes/ItemDatabase")
 @onready var object_manager: Node2D = %ObjectManager
+@onready var block_manager = get_node("/root/Main/Blocks")
 
 @onready var place_block_sound: AudioStreamPlayer = get_node("/root/Main/Managing Nodes/SoundManager/PlaceBlockSound")
 
@@ -47,4 +48,8 @@ func delete_cell(cellPos):
 func destroy_cell(cellPos):
 	self.set_cell(cellPos, -1)
 	background.set_cell(cellPos, 0, WATER_ATLAS)
-	object_manager.summon_generic_object("raft", item_database.paths["raft"], cellPos*128)
+	for block in block_manager.get_children():
+		if block is StaticBody2D and block.position == Vector2(cellPos[0]*128+64, cellPos[1]*128+64):
+			object_manager.summon_generic_object(block.id, item_database.paths[block.id], cellPos*128)
+			block.queue_free()
+	#object_manager.summon_generic_object("raft", item_database.paths["raft"], cellPos*128)

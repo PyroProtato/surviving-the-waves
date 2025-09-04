@@ -1,7 +1,45 @@
-[gd_scene load_steps=3 format=3 uid="uid://r85aypvaqq3k"]
+[gd_scene load_steps=7 format=3 uid="uid://r85aypvaqq3k"]
 
 [ext_resource type="Script" uid="uid://cjjwx18tly78r" path="res://scripts/hotbar.gd" id="1_4qkdb"]
 [ext_resource type="PackedScene" uid="uid://d0mq0a785re76" path="res://scenes/slot.tscn" id="1_yj1xu"]
+[ext_resource type="Theme" uid="uid://cs25uxf8x287n" path="res://themes/label_theme.tres" id="3_xrqkv"]
+
+[sub_resource type="Animation" id="Animation_xrqkv"]
+resource_name = "fade_text"
+length = 2.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:theme_override_colors/font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2, 2.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_2n1yv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:theme_override_colors/font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vu8xs"]
+_data = {
+&"RESET": SubResource("Animation_2n1yv"),
+&"fade_text": SubResource("Animation_xrqkv")
+}
 
 [node name="Hotbar" type="Node2D"]
 script = ExtResource("1_4qkdb")
@@ -25,3 +63,22 @@ position = Vector2(500, 0)
 
 [node name="Slot7" parent="." instance=ExtResource("1_yj1xu")]
 position = Vector2(600, 0)
+
+[node name="ItemLabel" type="Label" parent="."]
+visible = false
+offset_left = 225.0
+offset_top = -100.0
+offset_right = 375.0
+offset_bottom = -50.0
+theme = ExtResource("3_xrqkv")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 48
+text = "Item"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../ItemLabel")
+libraries = {
+&"": SubResource("AnimationLibrary_vu8xs")
+}

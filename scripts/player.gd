@@ -6,14 +6,22 @@ extends CharacterBody2D
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 
 var character_direction : Vector2
-@export var speed = 90000  # Adjust speed as needed
+@export var speed: int = 90000 # Adjust speed as needed
 
-@onready var interact_hitbox: CollisionShape2D = $Area2D/CollisionShape2D
+@onready var interact_hitbox: CollisionShape2D = $"Interact Area/CollisionShape2D"
+@onready var interact_area: Area2D = $"Interact Area"
+@onready var attack_area: Area2D = $"Attack Area"
+@onready var attack_hitbox: CollisionShape2D = $"Attack Area/CollisionShape2D"
 
 @onready var walking_sound: AudioStreamPlayer = $WalkingSound
+@onready var attack_anim: AnimatedSprite2D = $"Attack Area/attack_anim"
+
+
 
 func _physics_process(delta):
 	if game_manager.in_menu == false:
+		
+		print(speed)
 
 		#All Movement
 		if Input.is_action_pressed("move_up") or Input.is_action_pressed("move_left") or Input.is_action_pressed("move_right") or Input.is_action_pressed("move_down"):
@@ -40,6 +48,17 @@ func _physics_process(delta):
 		raft.player_occupied_tiles.append(topright_coords)
 		raft.player_occupied_tiles.append(bottomright_coords)
 		raft.player_occupied_tiles.append(bottomleft_coords)
+		
+		
+		#Checks for drowning
+		var drowning = true
+		for coords in raft.player_occupied_tiles:
+			if raft.get_cell_atlas_coords(coords)[0] != -1:
+				drowning = false
+		
+		if drowning:
+			game_manager.lose_health(5)
+			
 		
 		
 		
@@ -73,18 +92,46 @@ func _physics_process(delta):
 		if Input.is_action_just_pressed("move_up"):
 			interact_hitbox.position = Vector2(0, -150)
 			interact_hitbox.rotation_degrees = -180
+			attack_hitbox.position = Vector2(0, -150)
+			attack_hitbox.rotation_degrees = -180
+			attack_anim.position = Vector2(0, -150)
+			attack_anim.rotation_degrees = 180
 		if Input.is_action_just_pressed("move_left"):
 			interact_hitbox.position = Vector2(-100, 0)
 			interact_hitbox.rotation_degrees = -270
+			attack_hitbox.position = Vector2(-100, 0)
+			attack_hitbox.rotation_degrees = -270
+			attack_anim.position = Vector2(-100, 0)
+			attack_anim.rotation_degrees = 90
 		if Input.is_action_just_pressed("move_down"):
 			interact_hitbox.position = Vector2(0, 150)
 			interact_hitbox.rotation_degrees = 0
+			attack_hitbox.position = Vector2(0, 150)
+			attack_hitbox.rotation_degrees = 0
+			attack_anim.position = Vector2(0, 150)
+			attack_anim.rotation_degrees = 0
 		if Input.is_action_just_pressed("move_right"):
 			interact_hitbox.position = Vector2(100, 0)
 			interact_hitbox.rotation_degrees = -90
+			attack_hitbox.position = Vector2(100, 0)
+			attack_hitbox.rotation_degrees = -90
+			attack_anim.position = Vector2(100, 0)
+			attack_anim.rotation_degrees = 270
 	
 	else:
 		#When in menu
 		animated_sprite.play("idle")
 		walking_sound.playing = false
-	
+
+
+func attack(damage):
+	var overlapping_bodies = attack_area.get_overlapping_bodies()
+	attack_anim.visible = true
+	attack_anim.play("attack")
+	for body in overlapping_bodies:
+		if body is Node2D:
+			body.damage(damage)
+
+
+func _on_attack_anim_animation_finished() -> void:
+	attack_anim.visible = false

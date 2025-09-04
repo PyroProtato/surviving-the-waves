@@ -30,8 +30,8 @@
 [ext_resource type="AudioStream" uid="uid://c4dyiie7wbckf" path="res://assets/sounds/trash_rummage.mp3" id="17_yq6so"]
 [ext_resource type="AudioStream" uid="uid://cox5w3u0ddnqu" path="res://assets/sounds/fire_whoosh.mp3" id="18_fv21b"]
 [ext_resource type="TileSet" uid="uid://b3xdowk5s52a5" path="res://themes/new_tile_set.tres" id="19_tel4y"]
+[ext_resource type="Script" uid="uid://gx81885j7p2j" path="res://scripts/enemy_manager.gd" id="29_5q0nq"]
 [ext_resource type="PackedScene" uid="uid://drv46ik2u63d5" path="res://scenes/death_message.tscn" id="31_tel4y"]
-[ext_resource type="PackedScene" uid="uid://bo00ndash3dy7" path="res://scenes/shark.tscn" id="32_qkpxi"]
 
 [node name="Main" type="Node2D"]
 
@@ -58,7 +58,7 @@ unique_name_in_owner = true
 script = ExtResource("4_ya4ey")
 
 [node name="HungerTimer" type="Timer" parent="Managing Nodes/TimerManager"]
-wait_time = 3.0
+wait_time = 30.0
 autostart = true
 
 [node name="Game End Timer" type="Timer" parent="Managing Nodes/TimerManager"]
@@ -181,6 +181,12 @@ key_path = "res://assets/images/mouse.png"
 index = 2
 side = 1
 
+[node name="EnemyManager" type="Node" parent="."]
+script = ExtResource("29_5q0nq")
+
+[node name="SharkTimer" type="Timer" parent="EnemyManager"]
+one_shot = true
+
 [node name="HUD" parent="." instance=ExtResource("6_tefeu")]
 unique_name_in_owner = true
 
@@ -189,8 +195,6 @@ unique_name_in_owner = true
 [node name="Death Message" parent="HUD" instance=ExtResource("31_tel4y")]
 visible = false
 
-[node name="Shark" parent="." instance=ExtResource("32_qkpxi")]
-position = Vector2(-701, 239)
-
 [connection signal="timeout" from="Managing Nodes/TimerManager/HungerTimer" to="Managing Nodes/GameManager" method="_on_hunger_timer_timeout"]
 [connection signal="timeout" from="Objects/ObjectManager/WoodTimer" to="Objects/ObjectManager" method="_on_wood_timer_timeout"]
+[connection signal="timeout" from="EnemyManager/SharkTimer" to="EnemyManager" method="_on_shark_timer_timeout"]

@@ -2,6 +2,7 @@ extends Node2D
 
 @onready var loot_tables: Node = %LootTables
 @onready var game_manager: Node2D = get_node("/root/Main/Managing Nodes/GameManager")
+@onready var player: Node2D = get_node("/root/Main/Player")
 @onready var hud: CanvasLayer = %HUD
 @onready var fishing_casting_sound: AudioStreamPlayer = $"../SoundManager/FishingCastingSound"
 @onready var background: TileMapLayer = %Background
@@ -31,6 +32,9 @@ func _process(_delta: float) -> void:
 		game_manager.add_item(loot_tables.get_loot(loot_tables.trash_loot_table), 1)
 		game_manager.remove_item("trash", 1)
 		trash_rummage_sound.play()
+	
+	if Input.is_action_just_pressed("reg_click") and game_manager.selected_item() == "sword" and not game_manager.in_menu:
+		player.attack(20)
 	
 	if Input.is_action_just_pressed("reg_click") and game_manager.selected_item() in item_database.food.keys() and not game_manager.in_menu:
 		if hungerbar.value != hungerbar.max_value:

@@ -1,31 +1,38 @@
-[gd_scene load_steps=5 format=3 uid="uid://bo00ndash3dy7"]
+[gd_scene load_steps=7 format=3 uid="uid://bo00ndash3dy7"]
 
 [ext_resource type="Script" uid="uid://bw0ngfgvxyhp1" path="res://scripts/shark.gd" id="1_8l5qy"]
-[ext_resource type="Texture2D" uid="uid://dner24762qt72" path="res://assets/images/shark_texture.png" id="2_v5iaq"]
+[ext_resource type="Texture2D" uid="uid://dy80ibjvuviwh" path="res://assets/images/shark_texture2.png" id="2_v5iaq"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_8l5qy"]
-size = Vector2(115, 62)
+[sub_resource type="CircleShape2D" id="CircleShape2D_v5iaq"]
+radius = 50.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v5iaq"]
 size = Vector2(115, 60)
 
-[node name="RigidBody2D" type="RigidBody2D"]
-collision_layer = 0
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v5iaq"]
+bg_color = Color(1, 0.133333, 0.00392157, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_po4rd"]
+bg_color = Color(0.0189613, 0.72816, 0, 1)
+
+[node name="Shark" type="RigidBody2D"]
+collision_layer = 32
 collision_mask = 4
+gravity_scale = 0.0
 contact_monitor = true
-max_contacts_reported = 1
+max_contacts_reported = 50
 script = ExtResource("1_8l5qy")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(5, 5)
+scale = Vector2(7.5, 7.5)
 texture = ExtResource("2_v5iaq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(2.5, 0)
-shape = SubResource("RectangleShape2D_8l5qy")
+shape = SubResource("CircleShape2D_v5iaq")
 
 [node name="AttackTimer" type="Timer" parent="."]
-wait_time = 3.0
+wait_time = 5.0
 one_shot = true
 
 [node name="Hitbox" type="Area2D" parent="."]
@@ -34,6 +41,22 @@ collision_mask = 8
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2(2.5, 0)
 shape = SubResource("RectangleShape2D_v5iaq")
+
+[node name="DangerLine" type="Line2D" parent="."]
+visible = false
+z_index = 1
+points = PackedVector2Array(-5, 0, 128, 0, 128, 128, 0, 128, 0, 5)
+default_color = Color(0.984314, 0.0392157, 0.0156863, 1)
+
+[node name="Healthbar" type="ProgressBar" parent="."]
+offset_left = -60.0
+offset_top = -75.0
+offset_right = 60.0
+offset_bottom = -55.0
+theme_override_styles/background = SubResource("StyleBoxFlat_v5iaq")
+theme_override_styles/fill = SubResource("StyleBoxFlat_po4rd")
+value = 25.0
+show_percentage = false
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
