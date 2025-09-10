@@ -27,7 +27,14 @@ offset_right = 794.0
 offset_bottom = 594.0
 theme = ExtResource("2_w7j4m")
 theme_override_font_sizes/normal_font_size = 48
-text = "Dang that sucks...
+horizontal_alignment = 1
 
-Press any key to restart"
+[node name="RestartText" type="RichTextLabel" parent="Title"]
+offset_left = -196.0
+offset_top = 500.0
+offset_right = 794.0
+offset_bottom = 960.0
+theme = ExtResource("2_w7j4m")
+theme_override_font_sizes/normal_font_size = 48
+text = "Press any key to restart"
 horizontal_alignment = 1

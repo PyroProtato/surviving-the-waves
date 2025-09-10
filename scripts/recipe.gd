@@ -6,6 +6,7 @@ extends Sprite2D
 
 @onready var game_manager: Node2D = get_node("/root/Main/Managing Nodes/GameManager")
 @onready var crafting_sound: AudioStreamPlayer = get_node("/root/Main/Managing Nodes/SoundManager/CraftingSound")
+@onready var quest_manager: Node = get_node("/root/Main/Managing Nodes/QuestManager")
 
 var data
 var slot = preload("res://scenes/slot.tscn")
@@ -66,4 +67,5 @@ func _on_button_pressed() -> void:
 			game_manager.remove_item(ingredient_data[0], ingredient_data[1])
 		for product_data in data[1]:
 			game_manager.add_item(product_data[0], product_data[1])
+			quest_manager.increment_quest(product_data[0], product_data[1])
 		

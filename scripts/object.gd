@@ -41,7 +41,6 @@ func _ready() -> void:
 	sprite_2d.scale = sprite_2d.scale*mult
 	
 	
-	print(sprite_2d.texture.get_width()*mult)
 	
 	
 	

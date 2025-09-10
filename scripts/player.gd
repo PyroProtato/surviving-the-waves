@@ -21,7 +21,6 @@ var character_direction : Vector2
 func _physics_process(delta):
 	if game_manager.in_menu == false:
 		
-		print(speed)
 
 		#All Movement
 		if Input.is_action_pressed("move_up") or Input.is_action_pressed("move_left") or Input.is_action_pressed("move_right") or Input.is_action_pressed("move_down"):

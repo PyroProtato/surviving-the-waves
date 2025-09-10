@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bf4tsc4in8d3u" path="res://assets/images/crafting_table.png" id="1_87o7u"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_87o7u"]
-size = Vector2(399, 389)
+size = Vector2(102, 92)
 
 [node name="Crafting Table" type="StaticBody2D"]
 collision_layer = 8
@@ -24,7 +24,6 @@ collision_layer = 8
 collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-scale = Vector2(0.25, 0.25)
 shape = SubResource("RectangleShape2D_87o7u")
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

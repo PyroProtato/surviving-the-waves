@@ -11,7 +11,7 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if game_manager.time == "night":
 		if shark_timer.is_stopped():
 			shark_timer.start(randi_range(20, 40))

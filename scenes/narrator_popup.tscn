@@ -1,0 +1,233 @@
+[gd_scene load_steps=23 format=3 uid="uid://d342husnxlrja"]
+
+[ext_resource type="Script" uid="uid://61lbiapeyu4f" path="res://scripts/narrator_popup.gd" id="1_3apy3"]
+[ext_resource type="Theme" uid="uid://cs25uxf8x287n" path="res://themes/label_theme.tres" id="2_3apy3"]
+[ext_resource type="Texture2D" uid="uid://dcyp6ml06jglv" path="res://assets/images/player_spritesheet.png" id="2_cgo8j"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g2els"]
+atlas = ExtResource("2_cgo8j")
+region = Rect2(0, 42, 32, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tuyoq"]
+atlas = ExtResource("2_cgo8j")
+region = Rect2(32, 42, 32, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fjrip"]
+atlas = ExtResource("2_cgo8j")
+region = Rect2(64, 42, 32, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_smehm"]
+atlas = ExtResource("2_cgo8j")
+region = Rect2(96, 42, 32, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ur7pv"]
+atlas = ExtResource("2_cgo8j")
+region = Rect2(0, 84, 32, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y4r1p"]
+atlas = ExtResource("2_cgo8j")
+region = Rect2(32, 84, 32, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d2wvv"]
+atlas = ExtResource("2_cgo8j")
+region = Rect2(64, 84, 32, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3v2ag"]
+atlas = ExtResource("2_cgo8j")
+region = Rect2(96, 84, 32, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qhqgy"]
+atlas = ExtResource("2_cgo8j")
+region = Rect2(0, 0, 32, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dqkch"]
+atlas = ExtResource("2_cgo8j")
+region = Rect2(32, 0, 32, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qlg0r"]
+atlas = ExtResource("2_cgo8j")
+region = Rect2(64, 0, 32, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jej6c"]
+atlas = ExtResource("2_cgo8j")
+region = Rect2(0, 126, 32, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f1ej7"]
+atlas = ExtResource("2_cgo8j")
+region = Rect2(32, 126, 32, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oprun"]
+atlas = ExtResource("2_cgo8j")
+region = Rect2(64, 126, 32, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a8ls1"]
+atlas = ExtResource("2_cgo8j")
+region = Rect2(96, 126, 32, 42)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_iws2q"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g2els")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tuyoq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fjrip")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_smehm")
+}],
+"loop": true,
+"name": &"downward_walk",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ur7pv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y4r1p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d2wvv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3v2ag")
+}],
+"loop": true,
+"name": &"horizontal_walk",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qhqgy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dqkch")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qlg0r")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jej6c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f1ej7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oprun")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a8ls1")
+}],
+"loop": true,
+"name": &"upward_walk",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_3apy3"]
+resource_name = "skippable"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Style/ContinueShape:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+
+[sub_resource type="Animation" id="Animation_cgo8j"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Style/ContinueShape:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_iws2q"]
+_data = {
+&"RESET": SubResource("Animation_cgo8j"),
+&"skippable": SubResource("Animation_3apy3")
+}
+
+[node name="NarratorPopup" type="CanvasLayer"]
+layer = 4
+script = ExtResource("1_3apy3")
+
+[node name="Style" type="Node" parent="."]
+
+[node name="Polygon2D" type="Polygon2D" parent="Style"]
+color = Color(0.0980392, 0.0980392, 0.0980392, 0.478431)
+polygon = PackedVector2Array(-24, -26, 1168, -28, 1167, 665, -22, 672)
+uv = PackedVector2Array(-1, -1, 1153, 1, 1155, 648, 0, 651)
+
+[node name="Polygon2D2" type="Polygon2D" parent="Style"]
+position = Vector2(1098, 327)
+rotation = 3.14159
+scale = Vector2(5, -5)
+color = Color(0.0980392, 0.0980392, 0.0980392, 0.658824)
+polygon = PackedVector2Array(-28.8, 30, 230.8, 30, 230.8, 65, -30.4, 65)
+uv = PackedVector2Array(-1, -1, 1153, 1, 1155, 648, 0, 651)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Style"]
+position = Vector2(114, 523)
+rotation = -3.14159
+scale = Vector2(5, -5)
+sprite_frames = SubResource("SpriteFrames_iws2q")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="ContinueShape" type="Polygon2D" parent="Style"]
+visible = false
+position = Vector2(15, 21)
+polygon = PackedVector2Array(550, 600, 556.25, 612.5, 562.5, 600)
+
+[node name="Title" type="Label" parent="."]
+offset_left = 220.0
+offset_top = 463.0
+offset_right = 832.0
+offset_bottom = 527.0
+theme = ExtResource("2_3apy3")
+theme_override_font_sizes/font_size = 56
+text = "You"
+vertical_alignment = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Title"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 67.0
+offset_right = 926.0
+offset_bottom = 164.0
+theme = ExtResource("2_3apy3")
+theme_override_font_sizes/normal_font_size = 32
+text = "uhhh...."
+
+[node name="DelayTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_iws2q")
+}
+
+[connection signal="timeout" from="DelayTimer" to="." method="_on_delay_timer_timeout"]

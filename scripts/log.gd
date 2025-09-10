@@ -6,6 +6,7 @@ extends Area2D
 @onready var player: CharacterBody2D = get_node("/root/Main/Player")
 @onready var object_manager: Node2D = get_node("/root/Main/Objects/ObjectManager")
 @onready var item_database: Node = get_node("/root/Main/Managing Nodes/ItemDatabase")
+@onready var quest_manager: Node = get_node("/root/Main/Managing Nodes/QuestManager")
 @onready var outline: Line2D = $Outline
 
 var interactible = false
@@ -24,6 +25,8 @@ var e_popup = preload("res://scenes/e_popup.tscn")
 var PICKUP_DISTANCE
 
 var mouse_hovering = false
+
+
 
 func _ready() -> void:
 	PICKUP_DISTANCE = object_manager.PICKUP_DISTANCE
@@ -57,6 +60,7 @@ func _process(delta: float) -> void:
 		object_manager.num_wood -= 1
 		if moving:
 			object_manager.start_next_log_timer()
+		quest_manager.item_picked_up("wood")
 		self.queue_free()
 		
 	#Movement Logic

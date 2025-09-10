@@ -38,21 +38,16 @@ position = Vector2(-5.72204e-07, -5.72204e-07)
 shape = SubResource("RectangleShape2D_vqyee")
 
 [node name="CursorLabel" type="Label" parent="."]
-offset_left = 65.0
-offset_top = -107.5
-offset_right = 176.0
-offset_bottom = -68.5
+visible = false
+z_index = 5
+offset_left = 35.0
+offset_top = -75.0
+offset_right = 98.0
+offset_bottom = -27.0
 theme = ExtResource("3_sjnr7")
-theme_override_font_sizes/font_size = 48
+theme_override_font_sizes/font_size = 36
 text = "Item"
-horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="Sprite2D" type="Sprite2D" parent="CursorLabel"]
-scale = Vector2(83, 20.5)
-texture = ExtResource("2_5f2j7")
-region_enabled = true
-region_rect = Rect2(148, 158, 9, 7)
 
 [connection signal="mouse_entered" from="Hitbox" to="." method="_on_hitbox_mouse_entered"]
 [connection signal="mouse_exited" from="Hitbox" to="." method="_on_hitbox_mouse_exited"]

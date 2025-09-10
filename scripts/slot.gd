@@ -3,6 +3,7 @@ extends Node2D
 @onready var item_database: Node = get_node("/root/Main/Managing Nodes/ItemDatabase")
 @onready var number_label: Label = $NumberLabel
 @onready var item_sprite: Sprite2D = $ItemSprite
+@onready var cursor_label: Label = $CursorLabel
 
 var data
 
@@ -28,10 +29,20 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("ui_click") and mouse_hovering:
-		emit_signal("clicked", self, "left")
-	elif Input.is_action_just_pressed("ui_right_click") and mouse_hovering:
-		emit_signal("clicked", self, "right")
+	
+	if mouse_hovering:
+		#checks if its clicked
+		if Input.is_action_just_pressed("ui_click"):
+			emit_signal("clicked", self, "left")
+		elif Input.is_action_just_pressed("ui_right_click"):
+			emit_signal("clicked", self, "right")
+		
+		#displays item
+		if id != null:
+			cursor_label.text = id.replace("_", " ").capitalize()
+			cursor_label.global_position = get_viewport().get_mouse_position()
+	
+		
 
 
 func update(new_id, new_num):
@@ -63,7 +74,10 @@ func update(new_id, new_num):
 
 func _on_hitbox_mouse_entered() -> void:
 	mouse_hovering = true
+	if id != null:
+		cursor_label.visible = true
 
 
 func _on_hitbox_mouse_exited() -> void:
 	mouse_hovering = false
+	cursor_label.visible = false

@@ -204,6 +204,17 @@ max_value = 20.0
 value = 20.0
 varname = "hunger"
 
+[node name="CurrentQuestLabel" type="Label" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -152.0
+offset_right = -7.0
+offset_bottom = 32.0
+grow_horizontal = 0
+theme = ExtResource("2_uo2fv")
+text = "Current Quest:"
+
 [connection signal="timeout" from="NightShader/MorningTimer" to="NightShader" method="_on_morning_timer_timeout"]
 [connection signal="timeout" from="NightShader/AfternoonTimer" to="NightShader" method="_on_afternoon_timer_timeout"]
 [connection signal="timeout" from="NightShader/EveningTimer" to="NightShader" method="_on_evening_timer_timeout"]

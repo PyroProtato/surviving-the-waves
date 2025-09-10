@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://iropchmwudf" path="res://assets/images/object_icons/log.png" id="2_k0uux"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pt1ea"]
-size = Vector2(37.3333, 162.667)
+size = Vector2(132.667, 186.667)
 
 [node name="Log" type="Area2D"]
 scale = Vector2(0.75, 0.75)
@@ -18,7 +18,6 @@ scale = Vector2(0.564, 0.564)
 texture = ExtResource("2_k0uux")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1.33333, 1.3334)
 shape = SubResource("RectangleShape2D_pt1ea")
 
 [node name="Outline" type="Line2D" parent="."]

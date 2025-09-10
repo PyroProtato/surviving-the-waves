@@ -9,6 +9,7 @@ extends Node2D
 @onready var item_database: Node = %ItemDatabase
 @onready var healthbar: ProgressBar = get_node("/root/Main/HUD/Healthbar")
 @onready var hungerbar: ProgressBar = get_node("/root/Main/HUD/Hungerbar")
+@onready var quest_manager: Node = get_node("/root/Main/Managing Nodes/QuestManager")
 
 @onready var trash_rummage_sound: AudioStreamPlayer = get_node("/root/Main/Managing Nodes/SoundManager/TrashRummageSound")
 
@@ -27,6 +28,7 @@ func _process(_delta: float) -> void:
 		var temp = fishing_ui.instantiate()
 		hud.add_child(temp)
 		fishing_casting_sound.play()
+		quest_manager.increment_quest("fish")
 	
 	if Input.is_action_just_pressed("reg_click") and game_manager.selected_item() == "trash" and not game_manager.in_menu:
 		game_manager.add_item(loot_tables.get_loot(loot_tables.trash_loot_table), 1)

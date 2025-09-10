@@ -13,8 +13,8 @@ var wood = 10
 @onready var deathmsg: CanvasLayer = get_node("/root/Main/HUD/Death Message")
 
 
-var inventory = {"wood":5}
-var key_order = ["wood"]
+var inventory = {}
+var key_order = []
 
 var selected_index = 0
 
@@ -139,5 +139,3 @@ func _on_hunger_timer_timeout() -> void:
 		update_ui_bar(hungerbar, "subtract", 1)
 	else:
 		update_ui_bar(healthbar, "subtract", 10)
-
-	
